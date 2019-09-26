@@ -1,14 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'src/**'
-  pull-request:
-    paths:
-      - 'src/**'
+on: [push]
 
 jobs:
   test:
