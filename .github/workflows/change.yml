@@ -1,4 +1,4 @@
-name: CI on changes
+name: CI
 
 on:
   push:
