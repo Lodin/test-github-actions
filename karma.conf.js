@@ -56,7 +56,7 @@ module.exports = config => {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: watch,
+    autoWatch: false,
 
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
@@ -126,7 +126,7 @@ module.exports = config => {
       },
     },
 
-    singleRun: !watch,
+    singleRun: true,
     concurrency: Infinity,
   });
 };
