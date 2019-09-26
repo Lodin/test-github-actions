@@ -6,7 +6,7 @@ const {CI} = process.env;
 
 const isCI = !!CI;
 
-// const watch = !!process.argv.find(arg => arg.includes('watch')) && !isCI;
+const watch = !!process.argv.find(arg => arg.includes('watch')) && !isCI;
 const coverage = !!process.argv.find(arg => arg.includes('--coverage'));
 
 const babelrc = JSON.parse(
@@ -14,7 +14,7 @@ const babelrc = JSON.parse(
 );
 
 module.exports = config => {
-  const cfg = {
+  config.set({
     basePath: '',
 
     plugins: [
@@ -34,7 +34,7 @@ module.exports = config => {
     browserDisconnectTolerance: 1,
     captureTimeout: 60000,
 
-    frameworks: ['jasmine', !isCI && 'detectBrowsers'].filter(Boolean),
+    frameworks: ['jasmine', 'detectBrowsers'].filter(Boolean),
 
     files: [
       {pattern: '__tests__/polyfills.js', watched: false},
@@ -56,7 +56,7 @@ module.exports = config => {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: watch,
 
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
@@ -126,11 +126,7 @@ module.exports = config => {
       },
     },
 
-    singleRun: true,
+    singleRun: !watch,
     concurrency: Infinity,
-  };
-
-  config.set(cfg);
-
-  console.log(cfg);
+  });
 };
