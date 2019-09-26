@@ -14,7 +14,7 @@ const babelrc = JSON.parse(
 );
 
 module.exports = config => {
-  config.set({
+  const cfg = {
     basePath: '',
 
     plugins: [
@@ -128,5 +128,9 @@ module.exports = config => {
 
     singleRun: true,
     concurrency: Infinity,
-  });
+  };
+
+  config.set(cfg);
+
+  console.log(cfg);
 };
