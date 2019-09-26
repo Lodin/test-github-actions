@@ -6,7 +6,7 @@ const {CI} = process.env;
 
 const isCI = !!CI;
 
-const watch = !!process.argv.find(arg => arg.includes('watch')) && !isCI;
+// const watch = !!process.argv.find(arg => arg.includes('watch')) && !isCI;
 const coverage = !!process.argv.find(arg => arg.includes('--coverage'));
 
 const babelrc = JSON.parse(

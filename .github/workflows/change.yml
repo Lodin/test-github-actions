@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x]
-        os: [windows-latest, macOS-latest]
+        os: [windows-latest]
 
     steps:
       - uses: actions/checkout@v1
