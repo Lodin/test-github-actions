@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   CI:
-    name: "Test: Node.js ${{ matrix.node-version }} / OS ${{ matrix.os }}"
+    name: "Test: node ${{ matrix.node-version }} on ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
 
@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: npm install
-      - name: Test
+      - name: Testing
         run: npm run test:coverage
         env:
           CI: true
