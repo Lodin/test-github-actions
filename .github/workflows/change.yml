@@ -1,10 +1,20 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '!docs/*'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '!docs/*'
 
 jobs:
   CI:
-    name: "Test: node ${{ matrix.node-version }} on ${{ matrix.os }}"
+    name: 'OS: ${{ matrix.os }}'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
 
@@ -19,7 +29,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install
+      - name: Installation
         run: npm install
       - name: Testing
         run: npm run test:coverage
