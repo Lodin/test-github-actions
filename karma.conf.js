@@ -104,13 +104,20 @@ module.exports = config => {
 
     detectBrowsers: {
       postDetection(availableBrowsers) {
-        const preparedBrowsers = availableBrowsers.filter(
+        let preparedBrowsers = availableBrowsers.filter(
           browser => browser !== 'FirefoxHeadless',
         );
 
-        if (CI && preparedBrowsers.includes('ChromeHeadless')) {
-          preparedBrowsers[preparedBrowsers.indexOf('ChromeHeadless')] =
-            'ChromeHeadlessNoSandbox';
+        if (isCI) {
+          preparedBrowsers = preparedBrowsers.filter(
+            browser => browser !== 'Edge',
+          );
+
+          const chromeIndex = preparedBrowsers.indexOf('ChromeHeadless');
+
+          if (chromeIndex > -1) {
+            preparedBrowsers[chromeIndex] = 'ChromeHeadlessNoSandbox';
+          }
         }
 
         return preparedBrowsers;

@@ -3,8 +3,8 @@ name: CI
 on: [push]
 
 jobs:
-  test:
-    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+  CI:
+    name: "Test: Node.js ${{ matrix.node-version }} / OS ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
 
